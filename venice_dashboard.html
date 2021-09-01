@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+<title>⛵💦venice landing💦⛵</title>
+<style>
+    body {background-color: powderblue;}
+    h1   {color: blue;text-align: center;}
+    p    {color: red;text-align:center;}
+    iframe {margin-left:3em;margin-top:1.5em;}
+    #demo {text-align:center;}
+    </style>
+
+</head>
+<body>
+<h1>La Serenissima</h1>
+    <p>
+    <div id='demo'>
+    Information Loading
+    </div>
+    </p>
+
+<iframe width="420" height="275" src="https://www.youtube.com/embed/P393gTj527k?&autoplay=1&mute=1&controls=0" 
+allow="accelerometer; autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe width="420" height="275" src="https://www.youtube.com/embed/K_Vg94nBiaY?&autoplay=1&mute=1&controls=0" 
+allow="accelerometer; autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe width="420" height="275" src="https://www.youtube.com/embed/JqUREqYduHw?&autoplay=1&mute=1&controls=0" 
+allow="accelerometer; autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe width="420" height="275" src="https://www.youtube.com/embed/eE6VVJ3hvv8?&autoplay=1&mute=1&controls=0" 
+allow="accelerometer; autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe width="420" height="275" src="https://www.youtube.com/embed/HpZAez2oYsA?&autoplay=1&mute=1&controls=0" 
+allow="accelerometer; autoplay; encrypted-media" allowfullscreen></iframe>
+
+<iframe width="420" height="275" src="https://www.youtube.com/embed/WjOGhNDX51M?&autoplay=1&mute=1&controls=0" 
+allow="accelerometer; autoplay; encrypted-media" allowfullscreen></iframe>
+</iframe>
+
+<br/>
+(c)2020 m j m
+
+<script>
+const API = 'http://api.weatherapi.com/v1/current.json?key=4e53b3de013e417d934174628202011&q=Venice'
+
+const usaTime = (input) => {
+    let parsedTime = parseInt(input, 10)
+    if (parsedTime <= 12) {
+        return input.join(':') + ' AM'
+    } else {
+        input[0] -= 12;
+        return input.join(':') + ' PM'
+    }
+}
+
+fetch(API)
+.then(response => response.json())
+.then(data => {
+    let vTime = usaTime( data.location.localtime.split(' ')[1].split(':') );
+    let vTemp = data.current.temp_f;
+    let vWind = data.current.wind_mph;
+    let vCondition = data.current.condition.text;
+    document.getElementById("demo").innerHTML = `The time in Venice is ${vTime}; it is currently ${vTemp} degrees and ${vCondition.toLowerCase()}, with ${vWind} mile an hour winds.`
+})
+</script>
+</body>
+</html>
